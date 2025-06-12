@@ -10,7 +10,6 @@ jobs:
   build_push:
     runs-on: ubuntu-latest
     steps:
-    - name: Docker Login
     - name: Log in to Docker Hub
       run: echo "${{ secrets.docker_password }}" | docker login -u "${{ secrets.docker_username }}" --password-stdin
     - uses: actions/checkout@v4
