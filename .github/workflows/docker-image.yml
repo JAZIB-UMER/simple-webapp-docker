@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest && echo "$vars.DOCKER_USERNAME"
+      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest && echo "${{vars.DOCKER_USERNAME}}"
     - name: Log in to Docker Hub
       run: docker login -u "${{ vars.DOCKER_USERNAME }}" -p "${{ vars.DOCKER_PASSWORD }}"
     - name: push 
