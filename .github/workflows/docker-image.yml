@@ -6,16 +6,15 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  DOCKER_USERNAME: "jazibumer"
-  DOCKER_PASSWORD: "dckr_pat_72_yX_qAIkdtdJloORgK0y3NlIM"
-  
+  DOCKER_USERNAME: "{{secrets.DOCKER_USERNAME}}"
+  DOCKER_PASSWORD: "{{secrets.DOCKER_PASSWORD}}"
 jobs:
   build__push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest && echo "$DOCKER_USERNAME"
+      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest
     - name: Log in to Docker Hub
       run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - name: push 
