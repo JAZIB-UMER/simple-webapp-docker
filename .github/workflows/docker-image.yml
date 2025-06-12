@@ -7,12 +7,12 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  build:
-
+  build_and_push:
     runs-on: ubuntu-latest
-
     steps:
+    - name: Docker Login
+      run: docker login -u $(docker_username) -p $(docker_password)
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest && docker push jazibumer/dc_file:latest
+      
