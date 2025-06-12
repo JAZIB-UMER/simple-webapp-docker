@@ -5,9 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-env:
-  DOCKER_USERNAME: "{{secrets.DOCKER_USERNAME}}"
-  DOCKER_PASSWORD: "{{secrets.DOCKER_PASSWORD}}"
+
 jobs:
   build__push:
     runs-on: ubuntu-latest
@@ -17,6 +15,9 @@ jobs:
       run: docker build -t jazibumer/dc_file:latest .
     - name: Log in to Docker Hub
       run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin    
+      env:
+        DOCKER_USERNAME: "{{secrets.DOCKER_USERNAME}}"
+        DOCKER_PASSWORD: "{{secrets.DOCKER_PASSWORD}}"
     - name: push 
       run: docker push jazibumer/dc_file:latest
       
