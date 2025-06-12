@@ -1,13 +1,24 @@
-name: Test Echo
+name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
-  test:
+  build_push:
     runs-on: ubuntu-latest
+env:
+  DOCKER_USERNAME:  ${{ secrets.DOCKER_USRNAME }}
     steps:
-    - name: Echo test
-      run: |
-        echo "Hello, this is working!"
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_USERNAME }}"
+
+    # - uses: actions/checkout@v4
+
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest
+
+    # - name: Push the Docker image
+    #   run: docker push jazibumer/dc_file:latest
