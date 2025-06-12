@@ -5,22 +5,22 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+env:
+  DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
 
 jobs:
   build__push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    # - name: Build the Docker image
-    #   run: docker build -t jazibumer/dc_file:latest .
-    - name: Chechking Existense
-      run: echo "Using Docker username $DOCKER_USERNAME"
-    # - name: Log in to Docker Hub
-    #   run: |
-    #       echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME-test }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD-test }}
-    # - name: push 
-    #   run: docker push jazibumer/dc_file:latest
+    - name: Build the Docker image
+      run: docker build -t jazibumer/dc_file:latest .
+
+    - name: Log in to Docker Hub
+      run: |
+          echo ${{secrets.DOCKER_USERNAME}} | docker login --username ${{secrets.DOCKER_PASSWORD}} --password-stdin
+     
+    - name: push 
+      run: docker push jazibumer/dc_file:latest
       
