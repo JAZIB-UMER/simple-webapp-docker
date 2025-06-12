@@ -5,12 +5,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+env:
+  DOCKER_USERNAME:  ${{ secrets.DOCKER_USRNAME }}
 jobs:
   build_push:
     runs-on: ubuntu-latest
-env:
-  DOCKER_USERNAME:  ${{ secrets.DOCKER_USRNAME }}
     steps:
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_USERNAME }}"
