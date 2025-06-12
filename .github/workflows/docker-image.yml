@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build -t jazibumer/dc_file:latest .
+    # - name: Build the Docker image
+    #   run: docker build -t jazibumer/dc_file:latest .
     - name: Log in to Docker Hub
       run: |
           echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: push 
-      run: docker push jazibumer/dc_file:latest
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME-test }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD-test }}
+    # - name: push 
+    #   run: docker push jazibumer/dc_file:latest
       
