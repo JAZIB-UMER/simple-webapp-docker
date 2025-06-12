@@ -15,8 +15,9 @@ jobs:
     steps:
     - name: Log in to Docker Hub
       run: docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
-
     - uses: actions/checkout@v4
-
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.io/jazibumer/dc_file:latest && docker push docker.io/jazibumer/dc_file:latest
+      run: docker build . --file Dockerfile --tag jazibumer/dc_file:latest
+    - name: push 
+      run: docker push jazibumer/dc_file:latest
+      
