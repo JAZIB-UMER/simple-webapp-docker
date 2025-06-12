@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD-test }}" | docker login -u "${{ secrets.DOCKER_USERNAME-test }}" --password-stdin
+      run: echo "${{ secrets.DOCKER_PASSWORD-test }}" | docker login -username "${{ secrets.DOCKER_USERNAME-test }}" --password-stdin
 
     - uses: actions/checkout@v4
 
